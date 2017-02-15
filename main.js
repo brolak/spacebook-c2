@@ -2,6 +2,7 @@
 var $posts = $(".posts");
 var $postText = $("#post-name");
 var identity =0;
+var removeId=0;
 
 var posts = [];
 
@@ -12,6 +13,15 @@ var createPost = function (text){
 	};
 	identity +=1;
 	posts.push(newPost);
+}
+
+var removePost = function () {
+	for(var i = 0; i < posts.length; i++) {
+    	if(posts[i].id == removeId) {
+        	posts.splice(i, 1);
+        	break;
+    	}
+	}
 }
 
 var updatePosts = function () {
@@ -28,6 +38,8 @@ $(".btn").on("click", function() {
 });
 
 $("div .posts").on("click",".remove", function () {
+	removeId= $(this).parent().attr("data-id");
 	$(this).parent().remove();
-	
+	removePost();
+	updatePosts();	
 })
