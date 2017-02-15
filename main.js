@@ -1,6 +1,4 @@
-/*
 
-*/
 var $posts = $(".posts");
 var $postText = $("#post-name");
 var identity =0;
@@ -9,8 +7,8 @@ var posts = [];
 
 var createPost = function (text){
 	newPost = {
-		"data-text": text,
-		"data-id": identity
+		"text": text,
+		"id": identity
 	};
 	identity +=1;
 	posts.push(newPost);
@@ -19,7 +17,7 @@ var createPost = function (text){
 var updatePosts = function () {
 	$posts.empty();
 	for(i=0;i<posts.length;i++) {
-		$posts.append("<p class='posts' data-id='"+posts[i]['data-id']+"'>"+"<a href='#' class='remove'>Remove-</a>"+" \""+posts[i]['data-text']+"\""+"</p>");
+		$posts.append("<p class='posts' data-id='"+posts[i].id+"'>"+"<a href='#' class='remove'>Remove-</a>"+" \""+posts[i].text+"\""+"</p>");
 	}
 }
 
@@ -28,3 +26,8 @@ $(".btn").on("click", function() {
 	updatePosts();
 	$postText.val("");
 });
+
+$("div .posts").on("click",".remove", function () {
+	$(this).parent().remove();
+	
+})
