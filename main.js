@@ -27,7 +27,7 @@ var removePost = function () {
 var updatePosts = function () {
 	$posts.empty();
 	for(i=0;i<posts.length;i++) {
-		$posts.append("<p class='posts' data-id='"+posts[i].id+"'>"+"<a href='#' class='remove'>Remove-</a>"+" \""+posts[i].text+"\""+"</p>");
+		$posts.append("<p class='posts' data-id='"+posts[i].id+"'>"+"<a href='#' class='remove'>Remove-</a>"+" \""+posts[i].text+"\""+"</p><div class='comments'><input type='text' class='comment' placeholder='Add a comment!'></input></div><br>");
 	}
 }
 
@@ -41,5 +41,5 @@ $("div .posts").on("click",".remove", function () {
 	removeId= $(this).parent().attr("data-id");
 	$(this).parent().remove();
 	removePost();
-	updatePosts();	
+	updatePosts();
 })
